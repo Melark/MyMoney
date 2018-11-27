@@ -6,8 +6,10 @@ import './category.dart';
 */
 class ITransaction {
   // TODO: Add more properties like Date and Enums to indicate Type (if it makes sense to do so)
+  int id;
   String title;
   String description;
   double amount;
-  Category category;
+  int categoryID;
+  DateTime date;
 }
