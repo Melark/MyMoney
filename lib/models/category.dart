@@ -19,3 +19,10 @@ class Category {
     map['value'] = value;
   }
 }
+
+class CategorySeriesObject {
+  String category;
+  int count;
+
+  CategorySeriesObject(this.category,this.count);
+}
