@@ -4,6 +4,7 @@ import '../utils/donut_pie_chart.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import '../services/local_data_service.dart';
 import '../models/category.dart';
+import '../utils/transaction_list_view.dart';
 
 class IncomePage extends StatefulWidget {
   _IncomePageState createState() => _IncomePageState();
@@ -12,38 +13,32 @@ class IncomePage extends StatefulWidget {
 class _IncomePageState extends State<IncomePage> {
   List<Income> incomeList = List<Income>();
   List<Category> categoryList = List();
-
-  charts.Series<CategorySeriesObject, int> pieChartSeries =
-      charts.Series<CategorySeriesObject, int>(
-    id: 'Sales',
-    domainFn: (CategorySeriesObject obj, _) => obj.count,
-    measureFn: (CategorySeriesObject obj, _) => 1,
-    data: [
-      new CategorySeriesObject("Movies", 100),
-      new CategorySeriesObject("Necessities", 10),
-      new CategorySeriesObject("TakeAways", 50),
-      new CategorySeriesObject("Something Else", 10),
-    ],
-  );
+  List<String> someList = ["", "", "", "", ""];
 
   @override
   void initState() {
     LocalDataService().getIncomeListFromLocalStorage().then((incomes) {
       this.setState(() {
         incomeList = incomes;
+        for (var i = 0; i < 10; i++) {
+          incomeList.add(Income("Income $i", 10,0, DateTime.now()));
+        }
       });
     });
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
-      child: Material(
-        color: Colors.amber,
-        child: DonutPieChart([pieChartSeries], animate: true,)
-      ),
-    );
+    return Scaffold(
+        body: Column(
+          children: <Widget>[
+            Expanded(child: DonutPieChart(incomeList, true),),
+            Expanded(child: TransactionListView(incomeList),)
+          ],
+        )
+        
+        );
   }
 }
