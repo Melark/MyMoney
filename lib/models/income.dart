@@ -27,6 +27,7 @@ class Income implements ITransaction {
   */
   Income(this.title, this.amount, this.categoryID, this.date,
       [this.description]);
+      
   Income.withID(this.id, this.title, this.amount, this.categoryID, this.date,
       [this.description]);
 
