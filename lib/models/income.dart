@@ -26,10 +26,10 @@ class Income implements ITransaction {
     the named parameter indicates that it is optional and you access it by name. ex... new Income("this is a title', 100, description: "This is a description");
   */
   Income(this.title, this.amount, this.categoryID, this.date,
-      [this.description]);
-      
+      {this.description, this.category});
+
   Income.withID(this.id, this.title, this.amount, this.categoryID, this.date,
-      [this.description]);
+      {this.description, this.category});
 
   Income.fromMapObject(Map<String, dynamic> map) {
     id = map['id'];
@@ -54,4 +54,7 @@ class Income implements ITransaction {
 
     return map;
   }
+
+  @override
+  Category category;
 }

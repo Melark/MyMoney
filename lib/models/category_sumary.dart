@@ -1,5 +1,6 @@
 import './category.dart';
 import './i_transaction.dart';
+import 'package:flutter/material.dart';
 
 class CategorySummary {
   List<ITransaction> _transactionList;
@@ -20,4 +21,8 @@ class CategorySummary {
   
   int get categoryTransactionCount => _transactionList.length;
   int get categoryID => _category.id;
+
+  Color get chartColor {
+    return _category.categoryColor;
+  } 
 }

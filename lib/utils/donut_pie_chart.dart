@@ -19,6 +19,7 @@ class DonutPieChart extends StatelessWidget {
             categorySummary.categoryID,
         measureFn: (CategorySummary categorySummary, _) =>
             categorySummary.categoryTransactionTotal,
+            colorFn: (CategorySummary caegorySummary, _) => new charts.Color(a: caegorySummary.chartColor.alpha, r: caegorySummary.chartColor.red, g: caegorySummary.chartColor.green, b: caegorySummary.chartColor.blue),
         data: categories,
       )
     ];

@@ -12,4 +12,5 @@ class ITransaction {
   double amount;
   int categoryID;
   DateTime date;
+  Category category;
 }

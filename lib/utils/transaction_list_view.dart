@@ -18,8 +18,8 @@ class TransactionListView extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(_transactionList[index].title, style: TextStyle(fontSize: 20.0, color: Colors.white, fontWeight: FontWeight.bold, shadows: [Shadow(color: Colors.black45,blurRadius: 10.0 ,offset: Offset(1.0, 1.0))])),
-                Text("  R " + _transactionList[index].amount.toString(), style: TextStyle(fontSize: 20.0, color: Colors.white, shadows: [Shadow(color: Colors.black45,blurRadius: 10.0 ,offset: Offset(1.0, 1.0))])),
+                Text(_transactionList[index].title, style: TextStyle(fontSize: 20.0, color: Colors.blueGrey)),
+                Text("  R " + _transactionList[index].amount.toString(), style: TextStyle(fontSize: 20.0, color: _transactionList[index].category?.categoryColor, fontWeight: FontWeight.bold)),
               ],
             ),
           );

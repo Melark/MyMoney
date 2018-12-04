@@ -20,7 +20,7 @@ class TransactionService {
 
     // for mocking purposes
     result.add(CategorySummary(Category.withID(0,"Salary"), [
-      Income("Salary", 20000, 0, DateTime.now()),
+      Income("Salary", 20000, 0, DateTime.now(), ),
       Income("Allowance", 5000, 0, DateTime.now())
     ]));
     result.add(CategorySummary(Category.withID(1,"Investments"),

@@ -1,3 +1,5 @@
+import 'package:mymoney/models/category.dart';
+
 import './i_transaction.dart';
 
 class Expense implements ITransaction {
@@ -20,9 +22,9 @@ class Expense implements ITransaction {
   DateTime date;
 
   Expense(this.title, this.amount, this.categoryID, this.date,
-      [this.description]);
+      {this.description, this.category});
   Expense.withID(this.id, this.title, this.amount, this.categoryID, this.date,
-      [this.description]);
+      {this.description, this.category});
 
   Expense.fromMapObject(Map<String, dynamic> map) {
     id = map['id'];
@@ -47,4 +49,7 @@ class Expense implements ITransaction {
 
     return map;
   }
+
+  @override
+  Category category;
 }

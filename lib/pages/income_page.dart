@@ -25,11 +25,11 @@ class _IncomePageState extends State<IncomePage> {
         this.setState(() {
           categorySummaryList = categorySummaries;
           incomeList = incomes;
-          incomeList.add(Income("Salary", 20000, 1, DateTime.now()));
-          incomeList.add(Income("Allowance", 5000, 1, DateTime.now()));
-          incomeList.add(Income("Savings Rent", 2000, 2, DateTime.now()));
-          incomeList.add(Income("Appartment Rent", 5000, 3, DateTime.now()));
-          incomeList.add(Income("Appartment Rent", 4000, 3, DateTime.now()));
+          incomeList.add(Income("Salary", 20000, 1, DateTime.now(), category: Category.withID(0,"Salary")));
+          incomeList.add(Income("Allowance", 5000, 1, DateTime.now(), category: Category.withID(0,"Salary")));
+          incomeList.add(Income("Savings Rent", 2000, 2, DateTime.now(), category: Category.withID(1,"Investments")));
+          incomeList.add(Income("Appartment Rent", 5000, 3, DateTime.now(), category: Category.withID(2,"Additional Income")));
+          incomeList.add(Income("Appartment Rent", 4000, 3, DateTime.now(), category: Category.withID(2,"Additional Income")));
         });
       });
     });
@@ -40,6 +40,23 @@ class _IncomePageState extends State<IncomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          centerTitle: true,
+          title: Container(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 5.0,),
+                Text("My Income",
+                style: TextStyle(
+                    fontSize: 32.0,
+                    color: Colors.blueGrey,
+                    fontWeight: FontWeight.bold)),
+              ],
+            ),
+          )
+        ),
         floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
           onPressed: () {
@@ -49,17 +66,13 @@ class _IncomePageState extends State<IncomePage> {
             );
           },
         ),
-        backgroundColor: Colors.lightBlueAccent,
+        backgroundColor: Colors.white,
         body: Column(
           children: <Widget>[
             SizedBox(
-              height: 70,
+              height: 20,
             ),
-            Text("My Income",
-                style: TextStyle(
-                    fontSize: 32.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold)),
+            
             Padding(
               padding: new EdgeInsets.all(25.0),
               child: new SizedBox(
