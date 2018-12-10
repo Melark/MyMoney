@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './pages/income_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -7,15 +9,7 @@ class MyApp extends StatelessWidget {
   @override
     Widget build(BuildContext context) {
       return MaterialApp(
-        home: Material(
-          
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text("My Money Inital App")
-            ],
-          ),
-        ),
+        home:IncomePage()
       );
     }
 }
