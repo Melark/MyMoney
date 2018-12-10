@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "325144516832",
+    "firebase_url": "https://mymoney-8799f.firebaseio.com",
+    "project_id": "mymoney-8799f",
+    "storage_bucket": "mymoney-8799f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:325144516832:android:8e7a45f539856b46",
+        "android_client_info": {
+          "package_name": "com.mulrow.mymoney"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "325144516832-7ga01efhrs8vnha3fn30vuqdtbgvpnk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7SWYsvkKqlRWUh4k8m_PFxlKLQhf27Lo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
