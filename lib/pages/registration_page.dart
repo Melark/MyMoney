@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import '../services/auth_provider.dart';
-import './registration_page.dart';
 
-class Loginpage extends StatefulWidget {
-  _LoginpageState createState() => _LoginpageState();
+
+class RegistrationPage extends StatefulWidget {
+  _RegistrationPageState createState() => _RegistrationPageState();
 }
 
-class _LoginpageState extends State<Loginpage> {
+class _RegistrationPageState extends State<RegistrationPage> {
   final formKey = GlobalKey<FormState>();
   String _email;
   String _password;
 
-  bool validateAndSave() {
+bool validateAndSave() {
     final form = formKey.currentState;
     if (form.validate()) {
       form.save();
@@ -25,8 +25,8 @@ class _LoginpageState extends State<Loginpage> {
       try {
         var auth = AuthProvider();
         String userId =
-            await auth.signInWithEmailAndPassword(_email, _password);
-        print('Signed in: $userId');
+            await auth.registerWithEmailAndPassword(_email, _password);
+        print('Registered User: $userId');
       } catch (e) {
         print('Error: $e');
       }
@@ -37,65 +37,32 @@ class _LoginpageState extends State<Loginpage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.lightBlueAccent,
+        color: Colors.greenAccent,
         padding: EdgeInsets.all(25.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  Icon(
-                    Icons.monetization_on,
-                    size: 150.0,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    'Budget App',
-                    style: TextStyle(
-                        fontSize: 32.0,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  _loginFormStack(),
-                  FlatButton(
-                    child: Text('Not a user yet? Register now!'),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          _registrationFormStack(),
+          FlatButton(
+                    child: Text('Already a user? Sign In now!'),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => RegistrationPage()),
-                      );
+                      Navigator.pop(context);
                     },
                   )
-                ],
-              ),
-            )
-          ],
-        ),
+        ],
       ),
-    );
+    ));
   }
 
-  Widget _loginFormStack() {
+  Widget _registrationFormStack() {
     return Stack(
       alignment: Alignment(0.0, -1.25),
       children: <Widget>[
-        _loginCard(),
+        _registrationCard(),
         Container(
           padding: EdgeInsets.fromLTRB(80.0, 10.0, 80.0, 10.0),
           decoration: BoxDecoration(color: Colors.blueGrey),
-          child: Text('Log In',
+          child: Text('Sign Up',
               style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
@@ -105,13 +72,13 @@ class _LoginpageState extends State<Loginpage> {
     );
   }
 
-  Widget _loginCard() {
+  Widget _registrationCard() {
     return Card(
-      child: _loginFormSection(),
+      child: _registrationFormSection(),
     );
   }
 
-  Widget _loginFormSection() {
+  Widget _registrationFormSection() {
     return Form(
       key: formKey,
       child: Padding(
@@ -157,7 +124,7 @@ class _LoginpageState extends State<Loginpage> {
             ),
             RaisedButton(
               onPressed: validateAndSubmit,
-              child: Text('Login'),
+              child: Text('Register'),
             ),
           ],
         ),
