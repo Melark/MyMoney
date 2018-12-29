@@ -23,7 +23,7 @@ bool validateAndSave() {
   void validateAndSubmit() async {
     if (validateAndSave()) {
       try {
-        var auth = AuthProvider();
+        var auth = AuthProvider().instance;
         String userId =
             await auth.registerWithEmailAndPassword(_email, _password);
         print('Registered User: $userId');
@@ -48,11 +48,19 @@ bool validateAndSave() {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                  )
+                  ),
+                  Text('or'),
+                  alternativeAuthenticationSection()
         ],
       ),
     ));
   }
+
+Widget alternativeAuthenticationSection(){
+  return Row(
+children: <Widget>[Text('google')],
+  );
+}
 
   Widget _registrationFormStack() {
     return Stack(

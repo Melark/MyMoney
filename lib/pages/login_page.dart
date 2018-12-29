@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../services/auth_provider.dart';
 import './registration_page.dart';
+import 'home_page.dart';
+
+// todo: remove
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Loginpage extends StatefulWidget {
   _LoginpageState createState() => _LoginpageState();
@@ -23,15 +27,24 @@ class _LoginpageState extends State<Loginpage> {
   void validateAndSubmit() async {
     if (validateAndSave()) {
       try {
-        var auth = AuthProvider();
-        String userId =
+        var auth = AuthProvider().instance;
+        FirebaseUser user =
             await auth.signInWithEmailAndPassword(_email, _password);
-        print('Signed in: $userId');
+            navigateToHomePage();
       } catch (e) {
         print('Error: $e');
       }
     }
   }
+
+void navigateToHomePage(){
+  // todo: Remove this and look at a global routing system
+  var auth = AuthProvider().instance;
+  Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage(auth.user)),
+        );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -77,13 +90,32 @@ class _LoginpageState extends State<Loginpage> {
                             builder: (context) => RegistrationPage()),
                       );
                     },
-                  )
+                  ),
+                  Text('or'),
+                  alternativeAuthenticationSection()
                 ],
               ),
             )
           ],
         ),
       ),
+    );
+  }
+
+  Widget alternativeAuthenticationSection() {
+    return Container(
+      padding: EdgeInsets.all(10.0),
+      child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[IconButton(icon: Icon(Icons.g_translate), onPressed: () async{
+        try {
+          var auth = await AuthProvider().instance.signinWithGoogle();
+          navigateToHomePage();
+        } catch (e) {
+          print(e.toString());
+        }
+      },)],
+    ),
     );
   }
 
